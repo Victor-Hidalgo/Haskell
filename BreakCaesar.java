@@ -12,9 +12,8 @@ public class BreakCaesar{
 	System.out.println("hello");	
 	papirruqui("hello", -23);
 	System.out.println("aaba maleta");
-	count('A', "aaba maleta");
+	System.out.println(count('A', "aaba maletas") + " " + frequency('A', "aaba maletas"));
 
-	
 
 }
 
@@ -53,11 +52,9 @@ public static void papirruqui (String str, int shift){
 
 }
 
-public static void count (char bata, String str){
+public static double count (char bata, String str){
 
 	double appears = 0;
-	double letters = 0;
-	double freq = 0.0;
 	int j = 0;
 	int diff = 0;
 	int capdiff = 0;
@@ -78,17 +75,34 @@ public static void count (char bata, String str){
 		
 		if(diff2 == diff || diff2 == capdiff || capdiff2 == capdiff || capdiff2 == diff){	
 			
-			appears++;letters++;}
-
-		else{letters++;}
+			appears++;}
 
 	}
 		j++;}
-
-	freq = appears/letters;
-
-	System.out.println("Appears " + appears + " times \n The frequency is " + freq); 
+	return appears;
 	
 }
 
+public static double frequency (char bata, String str){
+
+	double freq = 0;
+	double letters = 0;
+	int j = 0;
+	int diff = 0;
+	int capdiff = 0;
+	char ch = ' ';
+
+	while(j<str.length()){
+
+		ch = str.charAt(j);
+		diff = ch - 'a';
+		capdiff = ch - 'A';
+
+		if((diff >= 0 && diff < 26) || (capdiff >= 0 && capdiff < 26)){letters++;}
+	j++;}
+
+	freq = count(bata, str) / letters;
+	
+	return freq;	
+}
 }
