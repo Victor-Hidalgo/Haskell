@@ -12,7 +12,7 @@ public class BreakCaesar{
 	System.out.println("hello");	
 	papirruqui("hello", -23);
 	System.out.println("aaba maleta");
-	count('t', "aaba maleta");
+	count('A', "aaba maleta");
 
 	
 
@@ -61,29 +61,28 @@ public static void count (char bata, String str){
 	int j = 0;
 	int diff = 0;
 	int capdiff = 0;
-	char ch = ' ';	
+	char ch = ' ';
+	int diff2 = 0;
+	int capdiff2 = 0;	
 
 	while(j<str.length()){
 
 		ch = str.charAt(j);
 		diff = ch - 'a';
-		capdiff = ch - 'A';	
+		capdiff = ch - 'A';
+		diff2 = bata - 'a';
+		capdiff2 = bata - 'A';		
 
-		if(diff >= 0 && diff < 26) {	
+		
+	if((diff >= 0 && diff < 26) || (capdiff >= 0 && capdiff < 26)){
+		
+		if(diff2 == diff || diff2 == capdiff || capdiff2 == capdiff || capdiff2 == diff){	
 			
-			if(ch == bata){appears++;letters++;}
+			appears++;letters++;}
 
-			else{letters++;}
-		}
- 	
-		else if(capdiff >= 0 && capdiff < 26) {	
+		else{letters++;}
 
-			if(ch == bata){appears++;letters++;}
-
-			else{letters++;}
-		}
-
-		else {ch = ch;}
+	}
 		j++;}
 
 	freq = appears/letters;
