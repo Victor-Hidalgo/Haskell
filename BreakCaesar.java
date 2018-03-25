@@ -14,6 +14,12 @@ public class BreakCaesar{
 	System.out.println("aaba maleta");
 	System.out.println(count('A', "aaba maletas") + " " + frequency('A', "aaba maletas"));
 
+	double[] papu = new double[2];
+	papu[0] = 3.4;
+	papu[1] = 8.12;
+
+	get_freqs("AdC");
+
 
 }
 
@@ -105,4 +111,23 @@ public static double frequency (char bata, String str){
 	
 	return freq;	
 }
+
+public static void get_freqs (String str){
+
+	int k = 0;
+	int i = 0;
+	char newChar = ' ';
+	double[] freqs = new double[26];
+	
+
+	while(k<26){
+	
+	newChar = (char) (('a' - 'a' + i) % 26 + 'a');
+	freqs[k] = frequency(newChar, str);
+	
+	System.out.println(freqs[k]);
+	
+k++;i++;}
+ 
+	}
 }
