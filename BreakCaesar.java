@@ -21,14 +21,13 @@ public class BreakCaesar{
 
 	double [] mom = {0.1, 0.9};
 	double [] dad = {0.8, 0.2};
-	chi_squared(mom, dad);
 
 	double[] knownFreq = {0.0855, 0.0160, 0.0316, 0.0387, 0.1210, 0.0218, 0.0209, 0.0496, 0.0733, 0.0022, 0.0081, 0.0421, 0.0253, 0.0717, 0.0747, 0.0207, 0.0010, 0.0633, 0.0673, 0.0894, 0.0268, 0.0106, 0.0183, 0.0019, 0.0172, 0.0011};
 
-	chi_squared(get_freqs("hello"), knownFreq);
+	chi_array("lbh jvyy arire qrpbqr guvf");
 }
 
-public static void papirruqui (String str, int shift){
+public static String papirruqui (String str, int shift){
 
 	while(shift < 0){
 		
@@ -59,7 +58,7 @@ public static void papirruqui (String str, int shift){
 		else {ch = ch;}
 		encrypt = encrypt + ch; i++;}
 
-	System.out.println(encrypt);
+	return encrypt;
 
 }
 
@@ -134,17 +133,49 @@ public static double[] get_freqs (String str){
 k++;i++;}
 return freqs;}
 
-public static void chi_squared (double[] freq, double[] english){
+public static double chi_squared (double[] freq, double[] english){
 
 	int j = 0;
 	double chi = 0;
 
 	while (j < freq.length && j < english.length){
 	
-	double operation = (freq[j] - english[j]) * (freq[j] - english[j])/ english[j];
-	chi = chi + operation;
-	j++;	
+		double operation = (freq[j] - english[j]) * (freq[j] - english[j])/ english[j];
+		chi = chi + operation;
+		j++;	
+	}
+	return chi;
 }
-	System.out.println(chi);
+
+public static void chi_array (String str){
+
+	double[] freq = new double [26];
+	String[] phrase = new String [26];	
+	int shift = 0;
+
+	while (shift < 26){
+	
+		phrase[shift] = papirruqui(str, shift);
+		shift++;
+	}
+	
+	shift = 0;
+	
+	double[] knownFreq = {0.0855, 0.0160, 0.0316, 0.0387, 0.1210, 0.0218, 0.0209, 0.0496, 0.0733, 0.0022, 0.0081, 0.0421, 0.0253, 0.0717, 0.0747, 0.0207, 0.0010, 0.0633, 0.0673, 0.0894, 0.0268, 0.0106, 0.0183, 0.0019, 0.0172, 0.0011};
+
+	while (shift < 26){
+	
+		freq[shift] = chi_squared(get_freqs(phrase[shift]), knownFreq);
+	shift++;}
+
+	int loc = 0;
+	int k = 1;
+	
+	while (k < freq.length){
+	
+		if (freq[k] < freq[loc]) {loc = k;}	
+	k++;}
+
+	System.out.println(phrase[loc]);
 }
 }
