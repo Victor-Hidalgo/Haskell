@@ -7,6 +7,7 @@ public class TFIDF {
         String papi = args[0] + " que rico";
         System.out.println(papi);
         System.out.println(args.length);
+        int counter = 0;
         
         HashMap<String, Integer> terms = new HashMap<String, Integer>();
         Scanner file = new Scanner(papi);
@@ -17,14 +18,15 @@ public class TFIDF {
            
             for (String w : wordlist) {
            
-            if (terms.containsKey(w)){terms.put(w, terms.get(w) + 1);}
+            if (terms.containsKey(w)){terms.put(w, terms.get(w) + 1); counter++;}
             
-            else{terms.put(w, 1);
+            else{terms.put(w, 1); counter++;
             }
             }
         }
         file.close();
         System.out.println(terms);
+        System.out.println("there are " + counter + " words");
         
     }
     
