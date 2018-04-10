@@ -7,10 +7,16 @@ public class TFIDF {
         String papi = args[0] + " que rico";
         System.out.println(papi);
         System.out.println(args.length);
-        int counter = 0;
         
-        HashMap<String, Integer> terms = new HashMap<String, Integer>();
-        Scanner file = new Scanner(papi);
+        System.out.println(appearances(papi) + "\nthere are " + countwords(papi, appearances(papi)) + " words");
+		System.out.println(tf(papi, appearances(papi)));
+        
+    }
+    
+	public static HashMap<String, Double> appearances (String str){
+		
+		HashMap<String, Double> terms = new HashMap<String, Double>();
+        Scanner file = new Scanner(str);
         while (file.hasNext()){
             String word = file.next();
             word = word.toLowerCase();
@@ -18,26 +24,52 @@ public class TFIDF {
            
             for (String w : wordlist) {
            
-            if (terms.containsKey(w)){terms.put(w, terms.get(w) + 1); counter++;}
+            if (terms.containsKey(w)){terms.put(w, terms.get(w) + 1);}
             
-            else{terms.put(w, 1); counter++;
+            else{terms.put(w, 1.0);
             }
             }
         }
         file.close();
-        System.out.println(terms);
-        System.out.println("there are " + counter + " words");
+        return terms;
+		
+	}
+	
+	public static int countwords (String str, HashMap <String, Double> serie){
+		
+		Scanner file = new Scanner (str);
+		int counter = 0;
+		
+		while (file.hasNext()){
+            String word = file.next();
+            word = word.toLowerCase();
+            String[] wordlist = word.split("[^\\p{L}0-9]+");
+           
+            for (String w : wordlist) {
+				counter++;
+            }
+        }
+        file.close();
+		
+		return counter;
+	}
+	
+    public static HashMap<String, Double> tf(String str, HashMap <String, Double> document){
         
-    }
-    
-    public static double tf(int term, int document){
+		Scanner file = new Scanner (str);
+		while (file.hasNext()){
+            String word = file.next();
+            word = word.toLowerCase();
+            String[] wordlist = word.split("[^\\p{L}0-9]+");
+           
+            for (String w : wordlist) {
+           
+            document.put(w, document.get(w)/countwords(str, document));            
+         
+            }
+		}
         
-        double ocurrences = 1;
-        double allwords=15;
-        double tf = ocurrences / allwords;
-        
-        return tf;
-        
+        return document;
     }
     
     public static double idf(int term, int collection){
