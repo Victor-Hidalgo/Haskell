@@ -4,12 +4,16 @@ public class TFIDF {
 
     public static void main (String args[]) {
         
-        String papi = args[0] + " que rico";
-        System.out.println(papi);
-        System.out.println(args.length);
+        ArrayList<HashMap<String, Double>> text = new ArrayList<HashMap<String, Double>>();
+        int i = 0;
         
-        System.out.println(appearances(papi) + "\nthere are " + countwords(papi, appearances(papi)) + " words");
-		System.out.println(tf(papi, appearances(papi)));
+        while (i < args.length){
+        
+        text.add(tf(args[i], appearances(args[i])));
+        System.out.println(text.get(i));
+        i++;}
+        
+        System.out.println(idf(args[0], text, args.length));
         
     }
     
@@ -35,10 +39,10 @@ public class TFIDF {
 		
 	}
 	
-	public static int countwords (String str, HashMap <String, Double> serie){
+	public static double countwords (String str){
 		
 		Scanner file = new Scanner (str);
-		int counter = 0;
+		double counter = 0;
 		
 		while (file.hasNext()){
             String word = file.next();
@@ -54,9 +58,10 @@ public class TFIDF {
 		return counter;
 	}
 	
-    public static HashMap<String, Double> tf(String str, HashMap <String, Double> document){
+    public static HashMap<String, Double> tf(String str, HashMap<String, Double> list){
         
-		Scanner file = new Scanner (str);
+		HashMap<String, Double> document = new HashMap<String, Double>();
+        Scanner file = new Scanner (str);
 		while (file.hasNext()){
             String word = file.next();
             word = word.toLowerCase();
@@ -64,7 +69,7 @@ public class TFIDF {
            
             for (String w : wordlist) {
            
-            document.put(w, document.get(w)/countwords(str, document));            
+            document.put(w, list.get(w)/countwords(str));            
          
             }
 		}
@@ -72,12 +77,29 @@ public class TFIDF {
         return document;
     }
     
-    public static double idf(int term, int collection){
+    public static HashMap<String, Double> idf(String phrase, ArrayList<HashMap<String, Double>> list, int yo){
+         
+        int n = 0;
+        double times = 0;
+        HashMap<String, Double> results = new HashMap<String, Double>();
+        Scanner file = new Scanner(phrase);
+        while (file.hasNext()){
+            String word = file.next();
+            word = word.toLowerCase();
+            String[] wordlist = word.split("[^\\p{L}0-9]+");
+            
+            for (String w : wordlist) {
+                
+                while(n < yo){
+                    
+                    if(list.get(n).containsKey(w)){times++;}
+                n++;}
+                
+                results.put(w, Math.log10(yo/times)); n = 0; times = 0;
+            }
+        }
         
-        double n = 5;
-        double d = 3;
-        double idf = Math.log10(n/d);
-        
-        return idf;
+        return results;
     }
+    
 }
