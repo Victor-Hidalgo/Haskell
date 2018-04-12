@@ -13,8 +13,8 @@ public class TFIDF {
             
             lines.add(conversion(args[0]));
             
-            System.out.println("Max TF value for this file." + "\n" + args[0] + "\n" 
-        + best(lines.get(0)), tf(lines.get(0), appearances(lines.get(0))));
+            System.out.println("Max TF value for this file." + "\n" + args[0]);
+            best(lines.get(0), tf(lines.get(0), appearances(lines.get(0))));
         }
         
         else{
@@ -23,7 +23,7 @@ public class TFIDF {
        
        lines.add(conversion(args[i]));
         
-        text.add(tf(lines.get(i)), appearances(lines.get(i)));
+        text.add(tf(lines.get(i), appearances(lines.get(i))));
         
         i++;}
         
