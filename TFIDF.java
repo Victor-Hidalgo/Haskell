@@ -9,11 +9,9 @@ public class TFIDF {
         
         while (i < args.length){
         
-        text.add(tf(args[i], appearances(args[i])));
+        text.add(finalmap(args[i], idf(args[i], text, args.length)));
         System.out.println(text.get(i));
         i++;}
-        
-        System.out.println(idf(args[0], text, args.length));
         
     }
     
@@ -101,5 +99,24 @@ public class TFIDF {
         
         return results;
     }
+    
+    public static HashMap<String, Double> finalmap(String str, HashMap<String, Double> values2){
+        
+        HashMap<String, Double> values1 = tf(str, appearances(str)); 
+        HashMap<String, Double> values3 = new HashMap<String, Double>();
+        Scanner file = new Scanner(str);
+        while (file.hasNext()){
+            String word = file.next();
+            word = word.toLowerCase();
+            String[] wordlist = word.split("[^\\p{L}0-9]+");
+            
+            for (String w : wordlist) {
+                
+                if(values1.containsKey(w)){values3.put(w, values1.get(w) * values2.get(w));}
+                
+            }
+        }
+      
+    return values3;}
     
 }
