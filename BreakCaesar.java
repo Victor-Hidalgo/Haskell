@@ -5,26 +5,9 @@ public class BreakCaesar{
 
 	public static void main (String args[]) {
 
-	System.out.println("Hola, soy bata");
-
-	String str = "La vieja";
-	
-	System.out.println("\n The length is: " + str.length());
-	System.out.println("hello");	
-	papirruqui("hello", -23);
-	System.out.println("aaba maleta");
-	System.out.println(count('A', "aaba maletas") + " " + frequency('A', "aaba maletas"));
-
-	double[] papu = new double[2];
-	papu[0] = 3.4;
-	papu[1] = 8.12;
-
-	double [] mom = {0.1, 0.9};
-	double [] dad = {0.8, 0.2};
-
-	double[] knownFreq = {0.0855, 0.0160, 0.0316, 0.0387, 0.1210, 0.0218, 0.0209, 0.0496, 0.0733, 0.0022, 0.0081, 0.0421, 0.0253, 0.0717, 0.0747, 0.0207, 0.0010, 0.0633, 0.0673, 0.0894, 0.0268, 0.0106, 0.0183, 0.0019, 0.0172, 0.0011};
-
-	chi_array("lbh jvyy arire qrpbqr guvf");
+	System.out.println(args[0]);
+    
+    chi_array(args[0]);
 }
 
 public static String papirruqui (String str, int shift){
@@ -37,7 +20,7 @@ public static String papirruqui (String str, int shift){
 	char ch = ' ';
 	int diff = 0;
 	int capdiff = 0;
-	String encrypt = " ";
+	String encrypt = "";
 
 	while(i<str.length()){
 
