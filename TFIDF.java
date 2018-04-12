@@ -9,9 +9,15 @@ public class TFIDF {
         
         while (i < args.length){
         
-        text.add(finalmap(args[i], idf(args[i], text, args.length)));
-        System.out.println(text.get(i));
         i++;}
+        
+        text.add(tf(args[0], appearances(args[0])));
+        text.add(tf(args[1], appearances(args[1])));
+        idf(args[0], text, args.length);
+        idf(args[1], text, args.length);
+        
+        System.out.println(finalmap(args[0], idf(args[0], text, args.length)));
+        System.out.println(finalmap(args[1], idf(args[1], text, args.length)));
         
     }
     
