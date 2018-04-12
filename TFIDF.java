@@ -6,11 +6,24 @@ public class TFIDF {
     public static void main (String args[]) throws IOException{
         
         ArrayList<HashMap<String, Double>> text = new ArrayList<HashMap<String, Double>>();
+        ArrayList<String> lines = new ArrayList<String>(args.length);
         int i = 0;
         
-        while (i < args.length){
+        if(args.length == 1){
+            
+            lines.add(conversion(args[0]));
+            
+            System.out.println("Max TF value for this file." + "\n" + args[0] + "\n" 
+        + best(lines.get(0)), tf(lines.get(0), appearances(lines.get(0))));
+        }
         
-        text.add(tf(conversion(args[i]), appearances(conversion(args[i]))));
+        else{
+        
+        while (i < args.length){
+       
+       lines.add(conversion(args[i]));
+        
+        text.add(tf(lines.get(i)), appearances(lines.get(i)));
         
         i++;}
         
@@ -22,8 +35,9 @@ public class TFIDF {
             
             System.out.println(args[i]);
             
-            best(conversion(args[i]), finalmap(conversion(args[i]), idf(conversion(args[i]), text, args.length)));
+            best(lines.get(i), finalmap(lines.get(i), idf(lines.get(i), text, args.length)));
         i++;}
+        }
         
         //System.out.println(conversion(args[0]));
     }
