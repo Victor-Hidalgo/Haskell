@@ -1,25 +1,31 @@
 import java.util.*;
+import java.io.*;
 
 public class TFIDF {
 
-    public static void main (String args[]) {
+    public static void main (String args[]) throws IOException{
         
         ArrayList<HashMap<String, Double>> text = new ArrayList<HashMap<String, Double>>();
         int i = 0;
         
         while (i < args.length){
         
+        text.add(tf(conversion(args[i]), appearances(conversion(args[i]))));
+        
         i++;}
         
-        text.add(tf(args[0], appearances(args[0])));
-        text.add(tf(args[1], appearances(args[1])));
-        idf(args[0], text, args.length);
-        idf(args[1], text, args.length);
+        i = 0;
         
-        System.out.println(finalmap(args[0], idf(args[0], text, args.length)));
-        System.out.println(finalmap(args[1], idf(args[1], text, args.length)));
-        best(args[0], finalmap(args[1], idf(args[1], text, args.length)));
+        System.out.println("Max TFIDF value for each file.");
         
+        while (i < args.length){
+            
+            System.out.println(args[i]);
+            
+            best(conversion(args[i]), finalmap(conversion(args[i]), idf(conversion(args[i]), text, args.length)));
+        i++;}
+        
+        //System.out.println(conversion(args[0]));
     }
     
 	public static HashMap<String, Double> appearances (String str){
@@ -128,22 +134,40 @@ public class TFIDF {
     
     public static void best (String str, HashMap<String, Double> list){
         
+        ArrayList<Double> numbers = new ArrayList<Double>();
+        ArrayList<String> letters = new ArrayList<String>();
         Scanner file = new Scanner(str);
-        while(file.hasNext()){
+        int j = 1;
+        int loc = 0;
+
+        while (file.hasNext()){
             String word = file.next();
             word = word.toLowerCase();
-            String secword = file.next();
-            secword = secword.toLowerCase();
             String[] wordlist = word.split("[^\\p{L}0-9]+");
-            String[] wordlist2 = secword.split("[^\\p{L}0-9]+");
-            String largest = " ";
             
-            for ((String w : wordlist) && (String y : wordlist2)) {
+            for (String w : wordlist) {
                 
-                if(list.get(y) > list.get(w)){largest = y;}
+                letters.add(w);
+                numbers.add(list.get(w));
+            }
+    
+        }
+        
+        while(j<numbers.size()){
             
+            if(numbers.get(j)>numbers.get(loc)){loc = j;}
+            
+        j++;}
+        
+        System.out.println(letters.get(loc) + " " + numbers.get(loc));
     }
-}
-        System.out.println(y);
-}
+    public static String conversion (String path) throws IOException{
+        
+        String line;
+        String title = "";
+        BufferedReader in = new BufferedReader(new FileReader(path));
+        while((line = in.readLine()) != null){
+            title = title + "\n" + line;
+        }
+    return title;}
 }
