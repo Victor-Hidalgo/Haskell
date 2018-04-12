@@ -18,6 +18,7 @@ public class TFIDF {
         
         System.out.println(finalmap(args[0], idf(args[0], text, args.length)));
         System.out.println(finalmap(args[1], idf(args[1], text, args.length)));
+        best(args[0], finalmap(args[1], idf(args[1], text, args.length)));
         
     }
     
@@ -125,4 +126,24 @@ public class TFIDF {
       
     return values3;}
     
+    public static void best (String str, HashMap<String, Double> list){
+        
+        Scanner file = new Scanner(str);
+        while(file.hasNext()){
+            String word = file.next();
+            word = word.toLowerCase();
+            String secword = file.next();
+            secword = secword.toLowerCase();
+            String[] wordlist = word.split("[^\\p{L}0-9]+");
+            String[] wordlist2 = secword.split("[^\\p{L}0-9]+");
+            String largest = " ";
+            
+            for ((String w : wordlist) && (String y : wordlist2)) {
+                
+                if(list.get(y) > list.get(w)){largest = y;}
+            
+    }
+}
+        System.out.println(y);
+}
 }
