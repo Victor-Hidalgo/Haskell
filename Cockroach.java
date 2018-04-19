@@ -6,5 +6,5 @@ public abstract class Cockroach{
     
     public abstract String name();
     
-    public abstract double dice();
+    public abstract double location();
 }
