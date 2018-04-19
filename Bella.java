@@ -8,51 +8,65 @@ public class Bella extends Cockroach{
     
     public double takeStep(){
         
-        int loc = 1;
         Random rand = new Random();
         int dice = rand.nextInt(6) + 1;
         int walk = 0;
-        int i = 0;
         
         if(dice == 4){
             
-            while(i<2){
-                
-                if(loc==102 || loc == 86){
-                    break;
-                }
-                walk++;loc = loc + 1;i++;
-            }
+            walk = 2;
         }
         
         else if(dice == 5){
-            while(i<3){
-                
-                if(loc==102 || loc==86){
-                    break;
-                }
-                walk++;loc = loc + 1;i++;
-            }
+            
+            walk = 3;
         }
         
         else if(dice == 6){
-            loc= loc;
-            walk =0;
+            
+            walk = 0;
         }
         
         else{
-            loc = loc -1;
+            
             walk = -1;
         }
         
-        if(loc == 1 && walk < 0){
+        return walk;
+    }
+    
+    public double location(){
+        
+        double loc = 1;
+        double steps = takeStep();
+        int i = 0;
+        
+        if(loc == 1 && steps<0){
             loc = 1;
         }
         
-        else if(loc == 102 && walk > 0){
-            
+        else if(loc==102 && steps>0){
+            loc = 102;
+        }
+        
+        else if(loc==86){
             loc = loc;
+        }
+        
+        else if (steps>0 && loc!=102) {
             
+            while(i < steps){
+                
+                if(loc==86){
+                    break;
+                }
+                
+                loc++;i++;
+            }
+        }
+        
+        else{
+            loc = loc + steps;
         }
         
         return loc;
