@@ -12,8 +12,6 @@ public class Don extends Cockroach{
     
     public double takeStep(){
         
-        double first = Math.random()*100;
-        double rounded = Math.round(number*10)/10.0;
         int loc = 0;
         int walk = 0;
         Random rand = new Random();
@@ -32,5 +30,35 @@ public class Don extends Cockroach{
         }
     
     return walk;
+    }
+    
+    public double location(){
+        
+        double loc = 1;
+        double steps = takeStep();
+        double first = Math.random()*100;
+        double rounded = Math.round(first*10)/10.0;
+        
+        if(rounded <= 0.1){
+            loc = 1;
+        }
+        
+        else{
+            
+            if(loc == 1 && steps<0){
+            loc = 1;
+            }
+        
+            else if(loc==102 && steps>0){
+                loc = 102;
+            }
+            
+            else{
+                loc = loc + steps;
+            }
+            
+        }
+        
+        return loc;
     }
 } 
