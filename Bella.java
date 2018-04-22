@@ -35,40 +35,104 @@ public class Bella extends Cockroach{
         return walk;
     }
     
-    public double location(){
+    public double location(int times){
         
+        int j = 0;
         double loc = 1;
-        double steps = takeStep();
+        double steps = 0;
         int i = 0;
+        double[] numbers = new double[times];
+        int k = 1;
+        int max = 0;
         
-        if(loc == 1 && steps<0){
-            loc = 1;
-        }
-        
-        else if(loc==102 && steps>0){
-            loc = 102;
-        }
-        
-        else if(loc==86){
-            loc = loc;
-        }
-        
-        else if (steps>0 && loc!=102) {
+        while(j<times){
             
-            while(i < steps){
+            steps = takeStep();
+        
+            if(loc == 1 && steps<0){
+                loc = 1;
+            }
+            
+            else if(loc==102 && steps>0){
+                loc = 102;
+            }
+            
+            else if(loc==86){
+                loc = loc;
+            }
+            
+            else if (steps>0 && loc!=102) {
                 
-                if(loc==86){
-                    break;
+                while(i < steps){
+                    
+                    if(loc==86){
+                        break;
+                    }
+                    
+                    loc = loc + 1;
+                    i++;
                 }
                 
-                loc++;i++;
+                i=0;
             }
+            
+            else{
+                loc = loc + steps;
+            }
+            
+            numbers[j] = loc;
+            
+            j++;
         }
         
-        else{
-            loc = loc + steps;
+        while(k<times){
+            
+           if(numbers[max] < numbers[k]){
+               max = k;
+           }
+           k++;
         }
         
-        return loc;
+        return numbers[max];
+    }
+    
+    public double topfloor(){
+        
+        double timestep = 0;
+        double loc = 1;
+        double steps = 0;
+        int i = 0;
+        
+        while(loc<102){
+            
+            timestep = takeStep();
+        
+            if(loc == 1 && timestep<0){
+                loc = 1;
+            }
+            
+            else if (timestep>0 && loc!=102) {
+                
+                if(loc==84 && timestep == 3){
+                    loc = 86;
+                }
+                
+                else if((loc==85 && timestep == 3) || (loc==85 && timestep == 2)){
+                    loc = 86;
+                }
+                
+                 else{
+                loc = loc + timestep;
+                }
+            }
+          
+            else{
+                loc = loc + timestep;
+            }
+            
+            steps++;  
+        }
+        
+        return steps;
     }
 }
