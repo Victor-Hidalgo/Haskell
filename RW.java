@@ -53,5 +53,18 @@ public class RW {
         System.out.println(object2.name() + "\n2000 experiments, the time needed to reach the top floor"
         + "\nhas average value: " + average2);
         
+        total1 = 0;
+        average1 = 0;
+        j = 0;
+        
+        while(j<2000){
+            
+            total1 = total1 + object1.coincidences(object1.samefloor(2000), object2.samefloor(2000));
+            j++;
+        }
+        
+        average1 = total1 / 2000;
+        System.out.println(object1.name() + "\n2000 experiments, the number of co-occurrences"
+        + "\nhas average value: " + average1);
     }
 }
