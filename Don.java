@@ -112,12 +112,61 @@ public class Don extends Cockroach{
                 else{
                     loc = loc + timestep;
                 }
-                
             }
             
             steps++;
         }
-        
         return steps;
+    }
+    
+     public ArrayList<Double> samefloor(int times){
+        
+        ArrayList<Double> numbers = new ArrayList<Double>(times);
+        double first = 0;
+        double rounded = 0;
+        double timestep = 0;
+        double loc = 1;
+        int i = 0;
+        
+        while(i<times){
+            
+            timestep = takeStep();
+            first = Math.random()*100;
+            rounded = Math.round(first*10)/10.0;
+        
+            if(rounded <= 0.1){
+                loc = 1;
+            }
+            
+            else{
+                
+                if(loc == 1 && timestep<0){
+                loc = 1;
+                }
+                
+                else{
+                    loc = loc + timestep;
+                }
+            }
+            
+            numbers.add(loc);
+            i++;
+        }
+        return numbers;
+    }
+    
+    public double coincidences(ArrayList<Double> list1, ArrayList<Double> list2){
+        
+        int counter = 0;
+        double mas = 1;
+        
+        while(counter<list1.size()){
+            
+            if(list1.get(counter) == list2.get(counter)){
+                mas++;
+            }
+            counter++;
+        }
+        return mas;
     }
 }
