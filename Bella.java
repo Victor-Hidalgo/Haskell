@@ -40,7 +40,6 @@ public class Bella extends Cockroach{
         int j = 0;
         double loc = 1;
         double steps = 0;
-        int i = 0;
         double[] numbers = new double[times];
         int k = 1;
         int max = 0;
@@ -63,17 +62,17 @@ public class Bella extends Cockroach{
             
             else if (steps>0 && loc!=102) {
                 
-                while(i < steps){
-                    
-                    if(loc==86){
-                        break;
-                    }
-                    
-                    loc = loc + 1;
-                    i++;
+                if(loc==84 && steps == 3){
+                    loc = 86;
                 }
                 
-                i=0;
+                else if((loc==85 && steps == 3) || (loc==85 && steps == 2)){
+                    loc = 86;
+                }
+                
+                 else{
+                loc = loc + steps;
+                }
             }
             
             else{
@@ -101,7 +100,6 @@ public class Bella extends Cockroach{
         double timestep = 0;
         double loc = 1;
         double steps = 0;
-        int i = 0;
         
         while(loc<102){
             
@@ -134,5 +132,47 @@ public class Bella extends Cockroach{
         }
         
         return steps;
+    }
+    
+    public ArrayList<Double> samefloor(int times){
+        
+        ArrayList<Double> numbers = new ArrayList<Double>(times);
+        double timestep = 0;
+        double loc = 1;
+        double steps = 0;
+        int i = 0;
+        
+        while(i<times){
+            
+            timestep = takeStep();
+        
+            if(loc == 1 && timestep<0){
+                loc = 1;
+            }
+            
+            else if (timestep>0 && loc!=102) {
+                
+                if(loc==84 && timestep == 3){
+                    loc = 86;
+                }
+                
+                else if((loc==85 && timestep == 3) || (loc==85 && timestep == 2)){
+                    loc = 86;
+                }
+                
+                 else{
+                loc = loc + timestep;
+                }
+            }
+          
+            else{
+                loc = loc + timestep;
+            }
+            
+            numbers.add(loc);
+            i++;
+        }
+        
+        return numbers;
     }
 }
