@@ -84,4 +84,15 @@ public class Cycle extends Graph{
         
         return positions;
     }
+	
+	public double time(int[] ones, int repetitions){
+		
+		double value = 0;
+		
+		while(){
+			
+			oneStep(ones);
+			value++;
+		}
+	}
 }
