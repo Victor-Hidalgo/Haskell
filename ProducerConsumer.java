@@ -23,7 +23,6 @@ class Craftperson1 implements Runnable{
     
     ArrayList<Integer> shelf = null;
     final int limit = 5;
-    int i = 0;
     int counter1 = 0;
     
     public Craftperson1(ArrayList<Integer> shelf){
@@ -33,25 +32,25 @@ class Craftperson1 implements Runnable{
     
     @Override
     public void run(){
-        while(true){
-            try{
-                produce1(i++);
-                Thread.sleep(400);
-            }
-            catch(InterruptedException exception){
+        
+        try{
+            for(int i = 1; i<=10; i++){
                 
+                produce1(i);
+                if(i==10){
+                    System.out.println("Harry has made 10 pots");
+                }
+                Thread.sleep(500);
             }
         }
-        
+        catch(InterruptedException exception){
+            
+        }
     }
     
     public void produce1(int i) throws InterruptedException{
         
         synchronized(shelf) {
-            
-			if(counter1 == 10){
-                System.out.println("Harry has made 10 pots");
-			}
 			
 			while(counter1 == 10){
                 shelf.wait();
@@ -90,25 +89,25 @@ class Craftperson2 implements Runnable{
     
     @Override
     public void run(){
-        while(true){
-            try{
-                produce2(j++);
+        
+        try{
+            for(int i = 1; i<=10; i++){
+                produce2(i);
+                
+                if(i==10){
+                    System.out.println("Beatrix has made 10 pots");
+                }
                 Thread.sleep(600);
             }
-            catch(InterruptedException exception){
-                
-            }
         }
-        
+        catch(InterruptedException exception){
+            
+        }
     }
     
     public void produce2(int j) throws InterruptedException{
         
         synchronized(shelf) {
-            
-			if(counter2 == 10){
-                System.out.println("Beatrix has made 10 pots");
-			}
 			
 			while(counter2 == 10){
                 shelf.wait();
@@ -144,26 +143,23 @@ class Packer implements Runnable{
     }
     
     public void run(){
-        while(true){
-            try{
+        
+        try{
+            for(int i = 1; i<=20; i++){
                 pack();
+                if (i==20){
+                    
+                    System.out.println("Macca has packed 20 pots");
+                }
                 Thread.sleep(400);
             }
-            catch(InterruptedException exception){
-                
-            }
         }
-        
+        catch(InterruptedException exception){
+            
+        }
     }
     
     public void pack() throws InterruptedException{
-        
-        synchronized(shelf) {
-            while(counter3 == 20){
-                System.out.println("Macca has packed 20 pots");
-                shelf.wait();
-            }
-        }
         
         synchronized(shelf){
             while(shelf.isEmpty()){
