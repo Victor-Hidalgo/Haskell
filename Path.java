@@ -30,7 +30,7 @@ public class Path extends Graph{
         int i = choose.nextInt(positions.length - 1);
         int j = i + 1;
         
-        if(positions[j] == null){
+        if(j == positions.length){
             positions[i] = positions[i];
         }
         
@@ -81,12 +81,18 @@ public class Path extends Graph{
 	public double run(int[] ones){
 		
 		boolean condition = check(ones);
+		int[] myarray = ones; 
+		
+		int value = 0;
 		
 		while(condition == false){
 			
-			oneStep(ones);
-			condition = check(oneStep(ones));
+			myarray = oneStep(myarray);
+			condition = check(myarray);
+			value++;
 		}
+		
+		return value;
 	}
 
 }
