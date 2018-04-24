@@ -30,8 +30,8 @@ public class Cycle extends Graph{
         int i = choose.nextInt(positions.length - 1);
         int j = i + 1;
         
-        if(positions[j] == null){
-            positions[j] = positions[0];
+        if(j == positions.length){
+            j = 0;
             
             if(positions[i] == 1 && positions[j] == 1){
             
@@ -85,14 +85,37 @@ public class Cycle extends Graph{
         return positions;
     }
 	
-	public double time(int[] ones, int repetitions){
+	public boolean check(int[] ones){
 		
-		double value = 0;
+		int i = 0;
+		boolean positive = true; 
 		
-		while(){
+		while(i<ones.length){
 			
-			oneStep(ones);
+			if(ones[i] !=1){
+				positive = false;
+			}
+			
+			i++;
+		}
+		
+		return positive;
+	}
+	
+	public double run(int[] ones){
+		
+		boolean condition = check(ones);
+		int[] myarray = ones; 
+		
+		int value = 0;
+		
+		while(condition == false){
+			
+			myarray = oneStep(myarray);
+			condition = check(myarray);
 			value++;
 		}
+		
+		return value;
 	}
 }
