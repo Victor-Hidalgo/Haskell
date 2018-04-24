@@ -60,4 +60,33 @@ public class Path extends Graph{
         
         return positions;
     }
+	
+	public boolean check(int[] ones){
+		
+		int i = 0;
+		boolean positive = true; 
+		
+		while(i<ones.length){
+			
+			if(ones[i] !=1){
+				positive = false;
+			}
+			
+			i++;
+		}
+		
+		return positive;
+	}
+	
+	public double run(int[] ones){
+		
+		boolean condition = check(ones);
+		
+		while(condition == false){
+			
+			oneStep(ones);
+			condition = check(oneStep(ones));
+		}
+	}
+
 }
