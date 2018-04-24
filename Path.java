@@ -94,5 +94,4 @@ public class Path extends Graph{
 		
 		return value;
 	}
-
 }
