@@ -62,7 +62,7 @@ public class Bella extends Cockroach{
             
             else if (steps>0 && loc!=102) {
                 
-                if(loc==84 && steps == 3){
+                if(loc==84 && steps == 3){  // this represents the pause Bella should make if she moves onto (or tries to move through) the 86th floor.
                     loc = 86;
                 }
                 
@@ -101,7 +101,7 @@ public class Bella extends Cockroach{
         double loc = 1;
         double steps = 0;
         
-        while(loc<102){
+        while(loc<103){
             
             timestep = takeStep();
         
@@ -134,9 +134,9 @@ public class Bella extends Cockroach{
         return steps;
     }
     
-    public ArrayList<Double> samefloor(int times){
+    public double[] samefloor(int times){
         
-        ArrayList<Double> numbers = new ArrayList<Double>(times);
+        double[] numbers = new double[times];
         double timestep = 0;
         double loc = 1;
         double steps = 0;
@@ -169,10 +169,56 @@ public class Bella extends Cockroach{
                 loc = loc + timestep;
             }
             
-            numbers.add(loc);
+            numbers[i] = loc;
             i++;
         }
         
         return numbers;
     }
+    
+    //method for the extra question.
+    
+    public double extraquestion(){
+        
+        double timestep = 0;
+        double loc = 1;
+        double proof = 1;
+        
+        while(loc<103){
+            
+            timestep = takeStep();
+        
+            if(loc == 1 && timestep<0){
+                loc = 1;
+            }
+            
+            else if (timestep>0 && loc!=102) {
+                
+                if(loc==84 && timestep == 3){
+                    loc = 86;
+                }
+                
+                else if((loc==85 && timestep == 3) || (loc==85 && timestep == 2)){
+                    loc = 86;
+                }
+                
+                else if(loc==95){
+                    
+                    proof = 0;
+                    break;
+                }
+                
+                 else{
+                loc = loc + timestep;
+                }
+            }
+          
+            else{
+                loc = loc + timestep;
+            }
+        }
+        
+        return proof;
+    }
+        
 }
