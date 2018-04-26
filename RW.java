@@ -11,7 +11,6 @@ public class RW {
         double average1 = 0;
         double average2 = 0;
         int j = 0;
-        double[] numbers2 = new double[100];
         
         while(j<2000){
             
@@ -34,9 +33,6 @@ public class RW {
         average1 = 0;
         average2 = 0;
         j = 0;
-        double test = object2.topfloor();
-        
-        //System.out.println(test);
         
         while(j<2000){
             
@@ -64,7 +60,26 @@ public class RW {
         }
         
         average1 = total1 / 2000;
-        System.out.println(object1.name() + "\n2000 experiments, the number of co-occurrences"
+        System.out.println("\n2000 experiments, the number of co-occurrences"
         + "\nhas average value: " + average1);
+        
+        // Code for the extra question.
+        
+        j = 0;
+        total1 = 0;
+        total2 = 0;
+        average1 = 0;
+        average2 = 0;
+        
+        while(j<100){
+            
+            total1 = total1 + object1.extraquestion();
+            total2 = total2 + object2.extraquestion();
+            j++;
+        }
+        
+        System.out.println(object1.name() + "\n100 experiments, the probability to reach the top floor is " + total1 + "%");
+        System.out.println(object2.name() + "\n100 experiments, the probability to reach the top floor is " + total2 + "%");
+        
     }
 }
