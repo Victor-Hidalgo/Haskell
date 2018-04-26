@@ -49,7 +49,7 @@ public class Don extends Cockroach{
             first = Math.random()*100;
             rounded = Math.round(first*10)/10.0;
         
-            if(rounded <= 0.1){
+            if(rounded <= 0.1){ //this represents the 0.1% chance that Don has to go back to the ground floor.
                 loc = 1;
             }
             
@@ -74,7 +74,7 @@ public class Don extends Cockroach{
             i++;
         }
         
-        while(j<100){
+        while(j<100){ //search the maximum value within the array.
             
             if(numbers[max]<numbers[j]){
                 max = j;
@@ -93,7 +93,7 @@ public class Don extends Cockroach{
         double loc = 1;
         double steps = 0;
         
-        while(loc<102){
+        while(loc<103){
             
             timestep = takeStep();
             first = Math.random()*100;
@@ -119,9 +119,9 @@ public class Don extends Cockroach{
         return steps;
     }
     
-     public ArrayList<Double> samefloor(int times){
+     public double[] samefloor(int times){
         
-        ArrayList<Double> numbers = new ArrayList<Double>(times);
+        double[] numbers = new double[times];
         double first = 0;
         double rounded = 0;
         double timestep = 0;
@@ -149,24 +149,64 @@ public class Don extends Cockroach{
                 }
             }
             
-            numbers.add(loc);
+            numbers[i] = loc;
             i++;
         }
         return numbers;
     }
     
-    public double coincidences(ArrayList<Double> list1, ArrayList<Double> list2){
+    public double coincidences(double[] list1, double[] list2){
         
         int counter = 0;
-        double mas = 1;
+        double coop = 1;
         
-        while(counter<list1.size()){
+        while(counter<list2.length){
             
-            if(list1.get(counter) == list2.get(counter)){
-                mas++;
+            if(list1[counter] == list2[counter]){
+                coop++;
             }
             counter++;
         }
-        return mas;
+        return coop;
+    }
+    
+    //method for the extra question.
+    
+    public double extraquestion(){
+        
+        double first = 0;
+        double rounded = 0;
+        double timestep = 0;
+        double loc = 1;
+        double proof = 1;
+        
+        while(loc<103){
+            
+            timestep = takeStep();
+            first = Math.random()*100;
+            rounded = Math.round(first*10)/10.0;
+        
+            if(rounded <= 0.1){
+                loc = 1;
+            }
+            
+            else{
+                
+                if(loc == 1 && timestep<0){
+                loc = 1;
+                }
+                
+                else if(loc==95){
+                    
+                    proof = 0;
+                    break;
+                }
+                
+                else{
+                    loc = loc + timestep;
+                }
+            }
+        }
+        return proof;
     }
 }
