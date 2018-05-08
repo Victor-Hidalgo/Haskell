@@ -41,11 +41,14 @@ public class Vending extends JFrame{
         }
         
         i = 0;
+        int[] amounts = new int[9];
         
         while(i<9){
             
             stock[i] = new JLabel("4 left");
             add(stock[i]);
+            amounts [i] = 4;
+            
             i++;
         }
         
@@ -68,6 +71,14 @@ public class Vending extends JFrame{
         stock[7].setBounds(475, 210, 230, 25);
         stock[8].setBounds(850, 210, 230, 25);
         
+        i = 0;
+        
+        while(i<9){
+        
+            items[i].addActionListener(new Click(items, stock, amounts));
+            i++;
+        
+        }
     }
     
     public static void main(String[] args){
