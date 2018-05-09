@@ -24,7 +24,16 @@ public class Click implements ActionListener{
             
             if (e.getSource() == stop[i]){
                 
-                values[i] = values[i] - 1;
+                if(values[i]==0){
+                    
+                    JOptionPane.showMessageDialog(null, "You don't know da wae");
+                }
+                
+                else{
+                
+                    values[i] = values[i] - 1;
+                    
+                }
                 
                 will[i].setText(values[i] + " left");
             }
