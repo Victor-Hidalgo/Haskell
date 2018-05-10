@@ -67,7 +67,7 @@ public class Vending extends JFrame{
         stock[3].setBounds(100, 130, 230, 25);
         stock[4].setBounds(475, 130, 230, 25);
         stock[5].setBounds(850, 130, 230, 25);
-        items[6].setBounds(10, 180, 220, 25);
+        items[6].setBounds(10, 180, 230, 25);
         items[7].setBounds(380, 180, 210, 25);
         items[8].setBounds(740, 180, 220, 25);
         stock[6].setBounds(100, 210, 230, 25);
@@ -79,12 +79,14 @@ public class Vending extends JFrame{
         
         while(i<9){
         
-            items[i].addActionListener(new Click(items, stock, amounts, vendor));
+            items[i].addActionListener(new Click(items, stock, amounts, vendor, costs));
             i++;
         
         }
         
-        vendor.addActionListener(new Click(items, stock, amounts, vendor));
+        vendor.addActionListener(new Click(items, stock, amounts, vendor, costs));
+        
+        double addition = 0;
     }
     
     public static void main(String[] args){
