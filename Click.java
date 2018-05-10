@@ -8,12 +8,14 @@ public class Click implements ActionListener{
     JLabel[] will;
     JButton[] stop;
     int[] values;
+    JButton info;
     
-    public Click(JButton[] items, JLabel[] stock, int[] amounts){
+    public Click(JButton[] items, JLabel[] stock, int[] amounts, JButton vendor){
         
         will = stock;
         stop = items;
         values = amounts;
+        info = vendor;
     }
     
     public void actionPerformed(ActionEvent e){
@@ -42,5 +44,14 @@ public class Click implements ActionListener{
         }
         
         i = 0;
+        
+        if(e.getSource() == info){
+            
+            SecondFrame fr = new SecondFrame();
+            fr.setTitle("Miralo ahi");
+            fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+            fr.setBounds(200, 170, 500 , 250);
+            fr.setVisible(true);
+        }
     }
 }
