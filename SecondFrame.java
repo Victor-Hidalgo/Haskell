@@ -19,5 +19,13 @@ public class SecondFrame extends JFrame{
         add(reseta);
         power.setBounds(20, 30, 100, 25);
         reseta.setBounds(20, 50, 100, 25);
+        reseta.addActionListener(new SecondFrame(sales));
+    }
+    
+    public void actionPerformed(ActionEvent e){
+        
+        if(e.getSource() == reseta){
+            
+            sales = 0;
     }
 }
