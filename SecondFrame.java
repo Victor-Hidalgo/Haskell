@@ -6,12 +6,18 @@ import javax.swing.*;
 public class SecondFrame extends JFrame{
     
     JLabel power;
+    double sales;
+    JButton reseta;
     
-    public SecondFrame(){
+    public SecondFrame(double j){
         
+        sales = j;
         setLayout(null);
-        power = new JLabel("Total sales");
+        power = new JLabel("Total sales = " + sales);
+        reseta = new JButton("Reset stock");
         add(power);
-        power.setBounds(100, 50, 230, 25);
+        add(reseta);
+        power.setBounds(20, 30, 100, 25);
+        reseta.setBounds(20, 50, 100, 25);
     }
 }
