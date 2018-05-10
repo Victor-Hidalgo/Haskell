@@ -31,6 +31,7 @@ public class Vending extends JFrame{
         items[6] = new JButton("French Vanilla Jigglypuffs (£1.30)");
         items[7] = new JButton("French Vanilla Bombs (£1.00)");
         items[8] = new JButton("French Vanilla Twists (£.80)");
+        JButton vendor = new JButton("Vendor Information");
         
         int i = 0;
         
@@ -52,6 +53,8 @@ public class Vending extends JFrame{
             i++;
         }
         
+        add(vendor);
+        
         items[0].setBounds(10, 20, 220, 25);
         items[1].setBounds(380, 20, 210, 25);
         items[2].setBounds(740, 20, 210, 25);
@@ -70,15 +73,18 @@ public class Vending extends JFrame{
         stock[6].setBounds(100, 210, 230, 25);
         stock[7].setBounds(475, 210, 230, 25);
         stock[8].setBounds(850, 210, 230, 25);
+        vendor.setBounds(740, 350, 210, 25);
         
         i = 0;
         
         while(i<9){
         
-            items[i].addActionListener(new Click(items, stock, amounts));
+            items[i].addActionListener(new Click(items, stock, amounts, vendor));
             i++;
         
         }
+        
+        vendor.addActionListener(new Click(items, stock, amounts, vendor));
     }
     
     public static void main(String[] args){
