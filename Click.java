@@ -10,8 +10,8 @@ public class Click implements ActionListener{
     int[] values;
     JButton info;
     double[] money;
-    double j;
-    double sucia;
+    double j = 0;
+    static double sum = 0;
     
     public Click(JButton[] items, JLabel[] stock, int[] amounts, JButton vendor, double[] costs){
         
@@ -20,6 +20,11 @@ public class Click implements ActionListener{
         values = amounts;
         info = vendor;
         money = costs;
+    }
+    
+    public Click() {
+        
+      sum = 0;  
     }
     
     public void actionPerformed(ActionEvent e){
@@ -32,13 +37,14 @@ public class Click implements ActionListener{
                 
                 if(values[i]==0){
                     
-                    JOptionPane.showMessageDialog(null, "You don't know da wae");
+                    JOptionPane.showMessageDialog(null, "There are none left");
                 }
                 
                 else{
                 
                     values[i] = values[i] - 1;
-                    j = j + money[i];
+                    j = money[i];
+                    System.out.println("firing j: " + j);
                 }
                 
                 will[i].setText(values[i] + " left");
@@ -49,12 +55,13 @@ public class Click implements ActionListener{
         
         i = 0;
         
-        sucia = sucia + j;
+        sum = sum + j;
+        System.out.println("sum: " + sum);
         
         if(e.getSource() == info){
             
-            SecondFrame fr = new SecondFrame(sucia);
-            fr.setTitle("Miralo ahi");
+            SecondFrame fr = new SecondFrame(sum);
+            fr.setTitle("Information");
             fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
             fr.setBounds(200, 170, 350 , 150);
             fr.setVisible(true);
