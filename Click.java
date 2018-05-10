@@ -9,13 +9,17 @@ public class Click implements ActionListener{
     JButton[] stop;
     int[] values;
     JButton info;
+    double[] money;
+    double j;
+    double sucia;
     
-    public Click(JButton[] items, JLabel[] stock, int[] amounts, JButton vendor){
+    public Click(JButton[] items, JLabel[] stock, int[] amounts, JButton vendor, double[] costs){
         
         will = stock;
         stop = items;
         values = amounts;
         info = vendor;
+        money = costs;
     }
     
     public void actionPerformed(ActionEvent e){
@@ -34,7 +38,7 @@ public class Click implements ActionListener{
                 else{
                 
                     values[i] = values[i] - 1;
-                    
+                    j = j + money[i];
                 }
                 
                 will[i].setText(values[i] + " left");
@@ -45,12 +49,14 @@ public class Click implements ActionListener{
         
         i = 0;
         
+        sucia = sucia + j;
+        
         if(e.getSource() == info){
             
-            SecondFrame fr = new SecondFrame();
+            SecondFrame fr = new SecondFrame(sucia);
             fr.setTitle("Miralo ahi");
             fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            fr.setBounds(200, 170, 500 , 250);
+            fr.setBounds(200, 170, 350 , 150);
             fr.setVisible(true);
         }
     }
