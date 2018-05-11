@@ -86,7 +86,6 @@ public class Vending extends JFrame{
         
         vendor.addActionListener(new Click(items, stock, amounts, vendor, costs));
         
-        double addition = 0;
     }
     
     public static void main(String[] args){
