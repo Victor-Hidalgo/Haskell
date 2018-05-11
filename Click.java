@@ -22,11 +22,6 @@ public class Click implements ActionListener{
         money = costs;
     }
     
-    public Click() {
-        
-      sum = 0;  
-    }
-    
     public void actionPerformed(ActionEvent e){
         
         int i = 0;
@@ -44,7 +39,6 @@ public class Click implements ActionListener{
                 
                     values[i] = values[i] - 1;
                     j = money[i];
-                    System.out.println("firing j: " + j);
                 }
                 
                 will[i].setText(values[i] + " left");
@@ -56,15 +50,16 @@ public class Click implements ActionListener{
         i = 0;
         
         sum = sum + j;
-        System.out.println("sum: " + sum);
         
         if(e.getSource() == info){
             
-            SecondFrame fr = new SecondFrame(sum);
+            SecondFrame fr = new SecondFrame(sum, will, values);
             fr.setTitle("Information");
             fr.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-            fr.setBounds(200, 170, 350 , 150);
+            fr.setBounds(200, 170, 400 , 200);
             fr.setVisible(true);
+            sum = 0;
         }
+        
     }
 }
