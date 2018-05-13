@@ -18,22 +18,23 @@ public class Sven extends DoorUser{
         int second = 2;
         int power1 = 0;
         int power2 = 0;
-        int[]toggle = new int [N+1];
+        int[]toggle = values;
         int sum = 0;
         
         while(power1<toggle.length && (power1 + power2) < toggle.length){
         
-            power1 = Math.pow(first, 2);
+            power1 = first*first;
+            
+            second = 0;
             
             second = first + 1;
+            power2 = second*second;
         
             while(power2<toggle.length && (power1 + power2) < toggle.length){
                 
-                power2 = Math.pow(second, 2);
-                
                 sum = power1;
                 
-                if(values[sum] == 0){
+                if(toggle[sum] == 0){
                     
                     toggle[sum] = 1;
                 }
@@ -45,7 +46,7 @@ public class Sven extends DoorUser{
                 
                 sum = power1 + power2;
                 
-                if(values[sum] == 0){
+                if(toggle[sum] == 0){
                     
                     toggle[sum] = 1;
                 }
@@ -55,8 +56,14 @@ public class Sven extends DoorUser{
                     toggle[sum] = 0;
                 }
                 
+                sum = 0;
+                
                 second++;
+                
+                power2 = second*second;
             }
+            
+            power2 = 0;
             
             first++;
         }
