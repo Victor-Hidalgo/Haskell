@@ -20,6 +20,8 @@ public class Ginny extends DoorUser{
         
         while(i<numbers.length){
             
+            k = 0;
+            
             k = gcd(N, i);
             
             if(k == 1 && values[i] == 0){
